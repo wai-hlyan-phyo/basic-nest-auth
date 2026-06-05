@@ -21,6 +21,6 @@ export default defineConfig({
     scopes: ['app', 'auth', 'prisma', 'user', 'libs', 'test'],
     allowCustomScopes: true,
     allowEmptyScopes: true,
-    useEmoji: false,
+    useEmoji: true,
   },
 });

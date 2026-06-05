@@ -27,6 +27,12 @@
       ],
       "@app/prisma/*": [
         "libs/prisma/src/*"
+      ],
+      "@app/swagger": [
+        "libs/swagger/src"
+      ],
+      "@app/swagger/*": [
+        "libs/swagger/src/*"
       ]
     }
   }

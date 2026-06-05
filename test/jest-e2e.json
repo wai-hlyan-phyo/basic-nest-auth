@@ -11,6 +11,7 @@
     "^.+\\.(t|j)s$": "ts-jest"
   },
   "moduleNameMapper": {
-    "^@app/prisma(|/.*)$": "<rootDir>/../libs/prisma/src/$1"
+    "^@app/prisma(|/.*)$": "<rootDir>/../libs/prisma/src/$1",
+    "^@app/swagger(|/.*)$": "<rootDir>/../libs/swagger/src/$1"
   }
 }

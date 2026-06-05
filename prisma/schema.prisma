@@ -4,33 +4,51 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider        = "prisma-client"
+  output          = "../prisma/generated/prisma"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider = "postgresql"
+  provider   = "postgresql"
+  extensions = [pgcrypto]
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+  SUSPENDED
+}
+
+enum SystemRole {
+  OWNER
 }
 
 model User {
-  id              String    @unique @db.Uuid
-  name            String
-  email           String    @unique
-  password        String
-  status          String
-  emailVerifiedAt DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  deletedAt       DateTime?
+  id              String     @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  name            String     @db.VarChar(100)
+  email           String     @unique @db.VarChar(120)
+  password        String     @db.VarChar(255)
+  status          UserStatus @default(PENDING)
+  emailVerifiedAt DateTime?  @db.Timestamptz()
+  createdAt       DateTime   @default(now()) @db.Timestamptz()
+  updatedAt       DateTime   @updatedAt @db.Timestamptz()
+  deletedAt       DateTime?  @db.Timestamptz()
 
   @@index([name])
   @@map("users")
 }
 
 model Role {
-  id          String  @unique @db.Uuid
-  name        String  @unique
-  description String?
+  id          String      @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  displayName String      @db.VarChar(100)
+  name        String      @unique @db.VarChar(50)
+  description String?     @db.Text
+  systemRole  SystemRole?
+  isSystem    Boolean     @default(false)
+  createdAt   DateTime    @default(now()) @db.Timestamptz()
 
+  @@index([isSystem])
   @@map("roles")
 }
