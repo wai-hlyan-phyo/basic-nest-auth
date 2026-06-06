@@ -37,6 +37,8 @@
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@prisma/config": "^7.8.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },
@@ -44,18 +46,18 @@
     "@commitlint/cli": "^21.0.2",
     "@commitlint/config-conventional": "^21.0.2",
     "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.18.0",
+    "@eslint/js": "^10.0.1",
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
     "@types/express": "^5.0.0",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.0.0",
+    "@types/node": "^25.9.2",
     "@types/supertest": "^7.0.0",
     "commitizen": "^4.2.4",
     "cz-git": "^1.13.1",
     "dotenv": "^17.4.2",
-    "eslint": "^9.18.0",
+    "eslint": "^10.4.1",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",
     "globals": "^17.0.0",
@@ -69,7 +71,7 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.7.3",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.20.0"
   },
   "jest": {
@@ -94,7 +96,9 @@
     ],
     "moduleNameMapper": {
       "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1",
-      "^@app/swagger(|/.*)$": "<rootDir>/libs/swagger/src/$1"
+      "^@app/swagger(|/.*)$": "<rootDir>/libs/swagger/src/$1",
+      "^.*prisma/generated/prisma/client$": "<rootDir>/test/mocks/prisma-client.ts",
+      "^@prisma/adapter-pg$": "<rootDir>/test/mocks/prisma-adapter-pg.ts"
     }
   },
   "allowScripts": {

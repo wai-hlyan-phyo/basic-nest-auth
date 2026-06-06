@@ -27,6 +27,8 @@ enum SystemRole {
 
 model User {
   id              String     @id @default(dbgenerated("uuidv7()")) @db.Uuid
+  roleId          String     @db.Uuid
+  role            Role       @relation(fields: [roleId], references: [id])
   name            String     @db.VarChar(100)
   email           String     @unique @db.VarChar(120)
   password        String     @db.VarChar(255)
@@ -48,6 +50,7 @@ model Role {
   systemRole  SystemRole?
   isSystem    Boolean     @default(false)
   createdAt   DateTime    @default(now()) @db.Timestamptz()
+  users       User[]
 
   @@index([isSystem])
   @@map("roles")

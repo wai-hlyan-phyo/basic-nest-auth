@@ -12,6 +12,8 @@
   },
   "moduleNameMapper": {
     "^@app/prisma(|/.*)$": "<rootDir>/../libs/prisma/src/$1",
-    "^@app/swagger(|/.*)$": "<rootDir>/../libs/swagger/src/$1"
+    "^@app/swagger(|/.*)$": "<rootDir>/../libs/swagger/src/$1",
+    "^.*prisma/generated/prisma/client$": "<rootDir>/mocks/prisma-client.ts",
+    "^@prisma/adapter-pg$": "<rootDir>/mocks/prisma-adapter-pg.ts"
   }
 }
